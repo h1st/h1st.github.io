@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>【Codeforces】 1081C Colorful Bricks 题解 | 奇怪的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="STO zzq！ 以下正文：很显然，第一块砖可以选 $m$ 种颜色中的任意一种。对于后面的 $n-1$ 块砖，可以从其中选k块，使其左边的那块砖不同（就是颜色种数为 $m-1$），剩下的可以染成 $m$ 种颜色的任意一种。故答案为$m \binom{n-1}{k} (m-1)^k$。暴算即可。 以下废话： 接下来康一下代码……诶还妹看呢 做法都送到家门口了害要代码？？？你搁这不劳而获呢？？？ Lu">
+  <meta name="description" content="STO zzq！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Codeforces】 1081C Colorful Bricks 题解">
 <meta property="og:url" content="http://yoursite.com/2020/04/03/%E3%80%90Codeforces%E3%80%91-1081C-Colorful-Bricks-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="奇怪的博客">
-<meta property="og:description" content="STO zzq！ 以下正文：很显然，第一块砖可以选 $m$ 种颜色中的任意一种。对于后面的 $n-1$ 块砖，可以从其中选k块，使其左边的那块砖不同（就是颜色种数为 $m-1$），剩下的可以染成 $m$ 种颜色的任意一种。故答案为$m \binom{n-1}{k} (m-1)^k$。暴算即可。 以下废话： 接下来康一下代码……诶还妹看呢 做法都送到家门口了害要代码？？？你搁这不劳而获呢？？？ Lu">
+<meta property="og:description" content="STO zzq！">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-03T09:00:02.000Z">
-<meta property="article:modified_time" content="2020-04-03T09:02:03.695Z">
+<meta property="article:modified_time" content="2020-04-03T09:09:47.507Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="奇怪的博客" type="application/atom+xml">
@@ -162,6 +162,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>STO zzq！</p>
+<a id="more"></a>
 <p>以下正文：<br>很显然，第一块砖可以选 $m$ 种颜色中的任意一种。<br>对于后面的 $n-1$ 块砖，可以从其中选k块，使其左边的那块砖<strong>不同</strong>（就是颜色种数为 $m-1$），剩下的可以染成 $m$ 种颜色的任意一种。<br>故答案为$m \binom{n-1}{k} (m-1)^k$。暴算即可。</p>
 <p>以下废话：</p>
 <p><del>接下来康一下代码……诶还妹看呢</del></p>
@@ -402,6 +403,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">洛谷</a>
               </li>
              
@@ -423,10 +428,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">二分图匹配</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -591,5 +592,23 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<!--
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
 </body>
 </html>
