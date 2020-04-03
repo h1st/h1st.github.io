@@ -6,13 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: bzoj | 奇怪的博客</title>
+  <title>降雷皇 题解 | 奇怪的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="奇怪的博客">
-<meta property="og:url" content="http://yoursite.com/tags/bzoj/index.html">
+  <meta name="description" content="题面：【问题描述】降雷皇哈蒙很喜欢雷电，他想找到神奇的电光。哈蒙有$n$条导线排成一排，每条导线有一个电阻值，神奇的电光只能从一根导线传到电阻比它大的上面，而且必须从左边向右传导，当然导线不必是连续的。哈蒙想知道电光最多能通过多少条导线，还想知道这样的方案有多少。【输入格式】第一行两个整数$n$和$type$。$type$表示数据类型第二行$n$个整数表示电阻。 【输出格式】第一行一个整数表示电光">
+<meta property="og:type" content="article">
+<meta property="og:title" content="降雷皇 题解">
+<meta property="og:url" content="http://yoursite.com/2020/04/03/%E9%99%8D%E9%9B%B7%E7%9A%87-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="奇怪的博客">
+<meta property="og:description" content="题面：【问题描述】降雷皇哈蒙很喜欢雷电，他想找到神奇的电光。哈蒙有$n$条导线排成一排，每条导线有一个电阻值，神奇的电光只能从一根导线传到电阻比它大的上面，而且必须从左边向右传导，当然导线不必是连续的。哈蒙想知道电光最多能通过多少条导线，还想知道这样的方案有多少。【输入格式】第一行两个整数$n$和$type$。$type$表示数据类型第二行$n$个整数表示电阻。 【输出格式】第一行一个整数表示电光">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-03T08:57:51.000Z">
+<meta property="article:modified_time" content="2020-04-03T08:58:56.296Z">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="线段树">
+<meta property="article:tag" content="树状数组">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="DP">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="奇怪的博客" type="application/atom+xml">
@@ -153,80 +162,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-降雷皇-题解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/SDOI2017-%E6%96%B0%E7%94%9F%E8%88%9E%E4%BC%9A-%E9%A2%98%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-04-03T08:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/SDOI2017-%E6%96%B0%E7%94%9F%E8%88%9E%E4%BC%9A-%E9%A2%98%E8%A7%A3/">[SDOI2017]新生舞会 题解 </a>
+    <h1 class="article-title" itemprop="name">
+      降雷皇 题解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/03/%E9%99%8D%E9%9B%B7%E7%9A%87-%E9%A2%98%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2020-04-03T08:57:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题面："><a href="#题面：" class="headerlink" title="题面："></a>题面：</h1><p>【问题描述】<br>降雷皇哈蒙很喜欢雷电，他想找到神奇的电光。<br>哈蒙有$n$条导线排成一排，每条导线有一个电阻值，神奇的电光只能从一根导线传到电阻比它大的上面，而且必须从左边向右传导，当然导线不必是连续的。<br>哈蒙想知道电光最多能通过多少条导线，还想知道这样的方案有多少。<br>【输入格式】<br>第一行两个整数$n$和$type$。$type$表示数据类型<br>第二行$n$个整数表示电阻。</p>
+<p>【输出格式】<br>第一行一个整数表示电光最多能通过多少条导线。<br>如果$type=1$则需要输出第二行，表示方案数，对$123456789$取模。</p>
+<p>【样例输入输出】<br>hamon.in<br>5 1<br>1 3 2 5 4<br>hamon.out<br>3<br>4</p>
+<p>【数据范围与约定】<br>对于$20\%$的数据$n \le 10$；<br>对于$40\%$的数据$n \le 1000$；<br>对于另外$20\%$的数据$type=0$；<br>对于另外$20\%$的数据保证最多能通过不超过$100$条导线；<br>对于$100\%$的数据$n \le 100000$,电阻值不超过$10000$。</p>
+<h1 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h1><p>这是一道模板题。XD</p>
+<h2 id="如何去维护LIS？"><a href="#如何去维护LIS？" class="headerlink" title="如何去维护LIS？"></a>如何去维护LIS？</h2><p>令以第$n$个数结尾的LIS长度为$f_i$，易得$f_i=\max\limits_{j=1}^{i-1}f_j+1$。<br>本来需要遍历每一个$j$，可是发现树状数组可以维护满足结合律的操作（如区间和，区间积，区间异或，区间最值等），复杂度可以降到$O(\log n)$。<br>于是总复杂度为$O(n \log n)$。</p>
+<h2 id="如何去维护LIS个数？"><a href="#如何去维护LIS个数？" class="headerlink" title="如何去维护LIS个数？"></a>如何去维护LIS个数？</h2><p>设$g_i$为长度为$f_i$的LIS的方案数，显然有：</p>
+<script type="math/tex; mode=display">g_i=\max \left(1,\sum_{i<j,a_i < a_j ,f_j+1=f_i} g_i\right)</script><p>可以用树状数组顺带维护一下（区间和）。</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(register long long i=a;i&lt;=b;++i)</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> f=<span class="number">0</span>;<span class="keyword">long</span> <span class="keyword">long</span> x=<span class="number">0</span>;<span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">do</span>&#123;ch=getchar();f|=(ch==<span class="string">'-'</span>);&#125;<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch));</span><br><span class="line">    <span class="keyword">do</span>&#123;x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+ch-<span class="string">'0'</span>;ch=getchar();&#125;<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch));</span><br><span class="line">    <span class="keyword">return</span> f?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>)x=-x,<span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>)write(x/<span class="number">10</span>);<span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">'0'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">writesp</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	write(x);<span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">writeln</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	write(x);<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod=<span class="number">123456789</span>,maxn=<span class="number">4e5</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,type;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[<span class="number">100001</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> tr[maxn],val[maxn],mx;</span><br><span class="line">pair&lt;<span class="keyword">long</span> <span class="keyword">long</span>,<span class="keyword">long</span> <span class="keyword">long</span>&gt; ans,temp;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span>&#123;<span class="keyword">return</span> x&amp;-x;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x,<span class="keyword">long</span> <span class="keyword">long</span> w,<span class="keyword">long</span> <span class="keyword">long</span> sz)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=x;i&lt;=maxn;i+=lowbit(i))</span><br><span class="line">    &#123;</span><br><span class="line">		<span class="keyword">if</span>(w&gt;val[i])&#123;tr[i]=sz;val[i]=w;&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(w==val[i])tr[i]=(tr[i]+sz)%mod;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">pair&lt;long long,long long&gt; ask(long long x)</span><br><span class="line">&#123;</span><br><span class="line">    pair&lt;long long,long long&gt; res(0,0);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">long</span> <span class="keyword">long</span> i=x;i;i-=lowbit(i))</span><br><span class="line">        <span class="keyword">if</span>(val[i]&gt;res.first)res=make_pair(val[i],tr[i]);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(val[i]==res.first)res=make_pair(res.first,(res.second+tr[i])%mod);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	n=read(),type=read();</span><br><span class="line">    add(<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    rep(i,<span class="number">1</span>,n)</span><br><span class="line">    &#123;</span><br><span class="line">    	a[i]=read()+<span class="number">1</span>;</span><br><span class="line">        temp=ask(a[i]);</span><br><span class="line">        add(a[i]+<span class="number">1</span>,temp.first+<span class="number">1</span>,temp.second);</span><br><span class="line">        mx=max(mx,a[i]+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    ans=ask(mx);</span><br><span class="line">    writeln(ans.first);</span><br><span class="line">    <span class="keyword">if</span>(type)writeln(ans.second);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">洛谷</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bzoj</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">loj</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二分图</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">线段树</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">二分图匹配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">树状数组</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">DP</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/03/%E9%99%8D%E9%9B%B7%E7%9A%87-%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/03/%E3%80%90Codeforces%E3%80%91-1081C-Colorful-Bricks-%E9%A2%98%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【Codeforces】 1081C Colorful Bricks 题解
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/04/03/%E7%A5%9E%E7%82%8E%E7%9A%87-%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">神炎皇 题解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -249,9 +377,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

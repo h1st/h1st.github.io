@@ -6,13 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: bzoj | 奇怪的博客</title>
+  <title>神炎皇 题解 | 奇怪的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="奇怪的博客">
-<meta property="og:url" content="http://yoursite.com/tags/bzoj/index.html">
+  <meta name="description" content="题面：【问题描述】神炎皇乌利亚很喜欢数对，他想找到神奇的数对。对于一个整数对$(a,b)$，若满足$a+b \le n$且$a+b$是$ab$的因子，则成为神奇的数对。请问这样的数对共有多少呢？【输入格式】一行一个整数n。【输出格式】一行一个整数表示答案，保证不超过64位整数范围。【样例输入输出】uria.in21uria.out11【数据范围与约定】对于$20\%$的数据$n \le 1000$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神炎皇 题解">
+<meta property="og:url" content="http://yoursite.com/2020/04/03/%E7%A5%9E%E7%82%8E%E7%9A%87-%E9%A2%98%E8%A7%A3/index.html">
 <meta property="og:site_name" content="奇怪的博客">
+<meta property="og:description" content="题面：【问题描述】神炎皇乌利亚很喜欢数对，他想找到神奇的数对。对于一个整数对$(a,b)$，若满足$a+b \le n$且$a+b$是$ab$的因子，则成为神奇的数对。请问这样的数对共有多少呢？【输入格式】一行一个整数n。【输出格式】一行一个整数表示答案，保证不超过64位整数范围。【样例输入输出】uria.in21uria.out11【数据范围与约定】对于$20\%$的数据$n \le 1000$">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-03T08:55:51.000Z">
+<meta property="article:modified_time" content="2020-04-03T08:57:03.797Z">
+<meta property="article:tag" content="题解">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="筛法">
+<meta property="article:tag" content="积性函数">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="奇怪的博客" type="application/atom+xml">
@@ -153,80 +161,192 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-神炎皇-题解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/03/SDOI2017-%E6%96%B0%E7%94%9F%E8%88%9E%E4%BC%9A-%E9%A2%98%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-04-03T08:37:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/03/SDOI2017-%E6%96%B0%E7%94%9F%E8%88%9E%E4%BC%9A-%E9%A2%98%E8%A7%A3/">[SDOI2017]新生舞会 题解 </a>
+    <h1 class="article-title" itemprop="name">
+      神炎皇 题解
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/04/03/%E7%A5%9E%E7%82%8E%E7%9A%87-%E9%A2%98%E8%A7%A3/" class="archive-article-date">
+  	<time datetime="2020-04-03T08:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题面："><a href="#题面：" class="headerlink" title="题面："></a>题面：</h1><p>【问题描述】<br>神炎皇乌利亚很喜欢数对，他想找到神奇的数对。<br>对于一个整数对$(a,b)$，若满足$a+b \le n$且$a+b$是$ab$的因子，则成为神奇的数对。请问这样的数对共有多少呢？<br>【输入格式】<br>一行一个整数n。<br>【输出格式】<br>一行一个整数表示答案，保证不超过64位整数范围。<br>【样例输入输出】<br>uria.in<br>21<br>uria.out<br>11<br>【数据范围与约定】<br>对于$20\%$的数据$n \le 1000$；<br>对于$40\%$的数据$n \le 100000$；<br>对于$60\%$的数据$n \le 10000000$；<br>对于$80\%$的数据$n \le 1000000000000$；<br>对于$100\%$的数据$n \le 100000000000000$。</p>
+<h1 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h1><p>设 $ \gcd(a,b) = d $</p>
+<p>令$a’=\frac{a}{d} , b’=\frac{b}{d}$</p>
+<p>易得$da’=a,db’=b$且$\gcd(a’,b’)=1 $</p>
+<p>代回得$d(a’+b’) \mid d^2a’b’$<br>所以$a’+b’ \mid da’b’$<br>又因为$\gcd(a’,b’)=1$<br>所以$\gcd(a’+b’,b’) = \gcd(a’,a’+b’) =1$<br>所以$a’+b’ \nmid a’b’$<br>又因为$a’+b’ \mid da’b’$<br>所以$a’+b’ \mid d$<br>因为$a+b \le n$<br>所以$d(a’+b’) \le n$<br>所以$a’+b’ \le \sqrt{n}$<br>设$a’+b’=c,d=ck$<br>因为$d(a’+b’) \le n$<br>所以$c^2k \le n$<br>所以$k \le \dfrac{n}{c^2}$<br>所以$k$有$\left\lfloor\dfrac{n}{c^2}\right\rfloor$个<br>因为$\gcd(a’+b’,b’) = \gcd(a’,a’+b’) =1$<br>所以$\gcd(a’,c)= \gcd(b’,c) =1$<br>所以数对$(a’,b’)$有$\varphi(c)$个<br>又因为$a=a’d=a’ck,b=b’d=b’ck$<br>所以$(a,b)$的个数为：对于所有$c \le \sqrt{n}$，$k$的个数与数对$(a’,b’)$的个数之积（乘法原理），即：</p>
+<script type="math/tex; mode=display">\sum\limits^{\sqrt{n}}_{c=1} \varphi(c) \left\lfloor\dfrac{n}{c^2}\right\rfloor</script><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rep(i,a,b) for(register long long i=a;i&lt;=b;++i)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">read</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> f=<span class="number">0</span>;<span class="keyword">long</span> <span class="keyword">long</span> x=<span class="number">0</span>;<span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">do</span>&#123;ch=getchar();f|=(ch==<span class="string">'-'</span>);&#125;<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch));</span><br><span class="line">    <span class="keyword">do</span>&#123;x=(x&lt;&lt;<span class="number">1</span>)+(x&lt;&lt;<span class="number">3</span>)+ch-<span class="string">'0'</span>;ch=getchar();&#125;<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch));</span><br><span class="line">    <span class="keyword">return</span> f?-x:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>)x=-x,<span class="built_in">putchar</span>(<span class="string">'-'</span>);</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>)write(x/<span class="number">10</span>);<span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">'0'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">writesp</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	write(x);<span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">writeln</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	write(x);<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line">ll prime[<span class="number">10000005</span>],cnt;</span><br><span class="line">ll phi[<span class="number">10000005</span>];</span><br><span class="line"><span class="keyword">bool</span> isprime[<span class="number">10000005</span>];</span><br><span class="line">ll n,m,ans;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">seive</span><span class="params">(<span class="keyword">int</span> m)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;    </span><br><span class="line">    phi[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	rep(i,<span class="number">2</span>,m)</span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">if</span>(!isprime[i])  </span><br><span class="line">        &#123;  </span><br><span class="line">            isprime[i]=<span class="number">1</span>;  </span><br><span class="line">            prime[++cnt]=i;  </span><br><span class="line">            phi[i]=i<span class="number">-1</span>;  </span><br><span class="line">        &#125; </span><br><span class="line">        rep(j,<span class="number">1</span>,cnt)</span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">if</span>((ll)i*prime[j]&gt;m) <span class="keyword">break</span>;  </span><br><span class="line">            isprime[i*prime[j]]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i%prime[j]) phi[i*prime[j]]=phi[i]*(prime[j]<span class="number">-1</span>);  </span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">	    &#123;</span><br><span class="line">	        phi[i*prime[j]]=phi[i]*prime[j];</span><br><span class="line">	        <span class="keyword">break</span>;</span><br><span class="line">	    &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">        ans+=(ll)phi[i]*(ll)(n/i/i);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    n=read(),m=<span class="built_in">sqrt</span>(n);  </span><br><span class="line">    seive(m);</span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    rep(i,<span class="number">2</span>,m) ans+=(n/i/i)*phi[i]; </span><br><span class="line">    writeln(ans);  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">洛谷</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bzoj</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">loj</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">题解</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">二分图</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数论</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">二分图匹配</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">筛法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">积性函数</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/03/%E7%A5%9E%E7%82%8E%E7%9A%87-%E9%A2%98%E8%A7%A3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/04/03/%E9%99%8D%E9%9B%B7%E7%9A%87-%E9%A2%98%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          降雷皇 题解
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/04/03/SDOI2017-%E6%96%B0%E7%94%9F%E8%88%9E%E4%BC%9A-%E9%A2%98%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[SDOI2017]新生舞会 题解 </div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -249,9 +369,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
